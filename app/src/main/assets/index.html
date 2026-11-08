@@ -1,0 +1,127 @@
+
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Masud Ludo</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #edf5f5;
+    text-align: center;
+    padding: 15px;
+    margin: 0;
+}
+
+h1 {
+    color: #087b78;
+}
+
+.box {
+    background: white;
+    padding: 18px;
+    border-radius: 15px;
+    max-width: 420px;
+    margin: auto;
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+    max-width: 330px;
+    margin: 20px auto;
+    background: #333;
+    padding: 6px;
+}
+
+.cell {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.turq { background: #40e0d0; }
+.green { background: #35b65a; }
+.yellow { background: #f4d34e; }
+.red { background: #ee5555; }
+
+button {
+    padding: 12px 22px;
+    background: #087b78;
+    color: white;
+    border: 0;
+    border-radius: 9px;
+    font-size: 17px;
+}
+
+#status {
+    font-size: 18px;
+    font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🎲 Masud Ludo</h1>
+
+<div class="box">
+
+<p>চার রঙের লুডো ডেমো</p>
+
+<label>
+<input type="checkbox" id="special">
+বিশেষ বিজয় মোড: ফিরোজা + গ্রিন
+</label>
+
+<h2 id="dice">🎲</h2>
+
+<button onclick="roll()">ছক্কা ফেলো</button>
+
+<p id="status">খেলা শুরু করো</p>
+
+<div class="board">
+    <div class="cell turq">ফিরোজা</div>
+    <div class="cell">↗</div>
+    <div class="cell green">গ্রিন</div>
+
+    <div class="cell">↙</div>
+    <div class="cell">🏠</div>
+    <div class="cell">↗</div>
+
+    <div class="cell red">লাল</div>
+    <div class="cell">↘</div>
+    <div class="cell yellow">হলুদ</div>
+</div>
+
+</div>
+
+<script>
+const players = ["ফিরোজা", "গ্রিন", "হলুদ", "লাল"];
+let turn = 0;
+
+function roll() {
+    let n = Math.floor(Math.random() * 6) + 1;
+
+    document.getElementById("dice").textContent = "🎲 " + n;
+
+    document.getElementById("status").textContent =
+        players[turn] + "-এর চাল হয়েছে।";
+
+    turn = (turn + 1) % 4;
+}
+</script>
+
+</body>
+</html>
