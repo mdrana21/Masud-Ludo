@@ -1,14 +1,92 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
-    <application
-        android:theme="@android:style/Theme.Material.Light.NoActionBar"
-        android:label="Masud Ludo">
-        <activity
-            android:name=".MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
-        </activity>
-    </application>
-</manifest>
+
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Masud Ludo</title>
+<style>
+* { box-sizing: border-box; }
+body {
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    background: #edf5f5;
+}
+h1 { color: #087b78; }
+.box {
+    max-width: 420px;
+    margin: auto;
+    padding: 18px;
+    background: white;
+    border-radius: 15px;
+}
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+    max-width: 330px;
+    margin: 20px auto;
+    padding: 6px;
+    background: #333;
+}
+.cell {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    font-weight: bold;
+}
+.turq { background: #40e0d0; }
+.green { background: #35b65a; }
+.yellow { background: #f4d34e; }
+.red { background: #ee5555; }
+button {
+    padding: 12px 22px;
+    background: #087b78;
+    color: white;
+    border: 0;
+    border-radius: 9px;
+    font-size: 17px;
+}
+#status { font-size: 18px; font-weight: bold; }
+</style>
+</head>
+<body>
+<h1>🎲 Masud Ludo</h1>
+<div class="box">
+<p>চার রঙের লুডো ডেমো</p>
+<label>
+<input type="checkbox" id="special">
+বিশেষ বিজয় মোড: ফিরোজা + গ্রিন
+</label>
+<h2 id="dice">🎲</h2>
+<button onclick="roll()">ছক্কা ফেলো</button>
+<p id="status">খেলা শুরু করো</p>
+<div class="board">
+<div class="cell turq">ফিরোজা</div>
+<div class="cell">↗</div>
+<div class="cell green">গ্রিন</div>
+<div class="cell">↙</div>
+<div class="cell">🏠</div>
+<div class="cell">↗</div>
+<div class="cell red">লাল</div>
+<div class="cell">↘</div>
+<div class="cell yellow">হলুদ</div>
+</div>
+</div>
+<script>
+const players = ["ফিরোজা", "গ্রিন", "হলুদ", "লাল"];
+let turn = 0;
+function roll() {
+    let n = Math.floor(Math.random() * 6) + 1;
+    document.getElementById("dice").textContent = "🎲 " + n;
+    document.getElementById("status").textContent =
+        players[turn] + "-এর চাল হয়েছে।";
+    turn = (turn + 1) % 4;
+}
+</script>
+</body>
+</html>
